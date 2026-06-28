@@ -54,32 +54,33 @@ WhatsAuto/
 │   │   └── models/      # Domain types
 │   └── Cargo.toml
 ├── src-node/            # Node.js whatsapp-web.js sidecar
-│   ├── src/
-│   │   ├── index.js     # Sidecar entry point
-│   │   ├── whatsapp/    # WA client wrapper
-│   │   └── bridge/      # IPC bridge to Rust
-│   └── package.json
+│   └── src/
+│       ├── index.js     # Sidecar entry point
+│       ├── bridge/      # IPC bridge to Rust
+│       └── whatsapp/    # WA client wrapper
 ├── src/                 # ClojureScript frontend
-│   ├── main/
-│   │   └── whatsauto/
-│   │       ├── core.cljs        # App entry + routing
-│   │       ├── db.cljs          # re-frame app-db schema
-│   │       ├── events.cljs      # re-frame events
-│   │       ├── effects.cljs     # re-frame effects
-│   │       ├── subs.cljs        # re-frame subscriptions
-│   │       ├── views/           # UI components
-│   │       │   ├── app.cljs     # Root layout
-│   │       │   ├── sidebar.cljs # Navigation sidebar
-│   │       │   ├── chats.cljs   # Chat list + view
-│   │       │   ├── contacts.cljs
-│   │       │   ├── ai.cljs      # AI interaction view
-│   │       │   └── settings.cljs
-│   │       └── interop/         # JS/React interop
-│   │           └── shadcn.cljs  # ShadCN component wrappers
-│   └── test/
+│   └── main/whatsauto/
+│       ├── core.cljs        # App entry + routing
+│       ├── db.cljs          # re-frame app-db schema
+│       ├── events.cljs      # re-frame events
+│       ├── effects.cljs     # re-frame effects
+│       ├── subs.cljs        # re-frame subscriptions
+│       ├── interop/         # JS/React interop
+│       │   ├── shadcn.cljs  # ShadCN component wrappers
+│       │   └── icons.cljs   # Lucide icon wrappers
+│       └── views/           # UI components
+│           ├── app.cljs     # Root layout
+│           ├── sidebar.cljs # Navigation sidebar
+│           ├── chats.cljs   # Chat list + view
+│           ├── ai.cljs      # AI assistant view
+│           ├── automation.cljs # Scheduler + rules
+│           ├── translation.cljs  # Translation settings
+│           ├── voice.cljs   # Voice input config
+│           ├── leads.cljs   # Lead discovery
+│           ├── plugins.cljs # Plugin management
+│           └── settings.cljs
 ├── shadow-cljs.edn      # Shadow-CLJS build config
 ├── package.json         # Frontend JS deps
-├── tailwind.config.js   # Tailwind config
 └── docs/                # Architecture + API docs
 ```
 
@@ -96,20 +97,17 @@ WhatsAuto/
 ### Install dependencies
 
 ```bash
-# Install JS deps (frontend + sidecar)
 npm install
-
-# Install sidecar deps
 cd src-node && npm install && cd ..
 ```
 
 ### Development
 
 ```bash
-# Start Shadow-CLJS watcher (compiles CLJS → JS)
-npx shadow-cljs watch app
+# Terminal 1: watch ClojureScript
+npm run cljs:watch
 
-# In another terminal: start Tauri dev
+# Terminal 2: start Tauri dev
 npm run tauri:dev
 ```
 
@@ -127,20 +125,25 @@ The main WhatsApp Business interface — chat list, active conversation, contact
 ### 2. AI Assistant View
 Configure AI providers, manage prompt templates, set per-conversation AI modes, and interact with the built-in AI assistant.
 
+### 3. Automation View
+Schedule tasks, define business rules, and create multi-step workflows.
+
+### 4. Translation View
+Configure automatic translation profiles and per-contact language settings.
+
 ## Roadmap
 
 - [x] Core architecture & scaffold
 - [x] WhatsApp Web integration (sidecar)
 - [x] Basic messaging UI
 - [x] AI provider abstraction layer
+- [x] Phase 2: Conversation memory, prompt templates, scheduler, rules engine
+- [x] Phase 2: Translation, voice, lead discovery, plugins
 - [ ] QR login flow
-- [ ] Full message history
+- [ ] Full message history sync
 - [ ] AI auto-reply
 - [ ] Campaign engine
-- [ ] Lead discovery
-- [ ] Translation layer
-- [ ] Voice input
-- [ ] Plugin SDK
+- [ ] Plugin SDK v1
 
 ## License
 
