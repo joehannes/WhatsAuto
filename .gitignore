@@ -1,15 +1,35 @@
-.env
-.env.local
+```
+# Build artifacts and binaries
+src-tauri/binaries/
+*.exe
+*.dll
+*.so
+*.a
+*.obj
+*.out
+
+# Dependencies
 node_modules/
 target/
-.shadow-cljs/
-dist/js/
-dist/css/*.css
-dist/index.html
-src/main/gen/
-dist/js/shadcn-ui.js
-!.gitkeep
-.DS_Store
+
+# Temporary and log files
+*.tmp
 *.log
-.cpcache/
-.wa-session/
+*.swp
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# Editors
+.vscode/
+.idea/
+
+# Coverage and testing
+coverage/
+htmlcov/
+.coverage
+.mypy_cache/
+.pytest_cache/
+```
