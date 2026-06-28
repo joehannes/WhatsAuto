@@ -1,0 +1,19 @@
+{
+  "name": "wa-sidecar",
+  "version": "0.1.0",
+  "description": "WhatsApp Web.js bridge sidecar for WhatsAuto",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "whatsapp-web.js": "^1.26.1",
+    "qrcode-terminal": "^0.12.0",
+    "ws": "^8.18.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
