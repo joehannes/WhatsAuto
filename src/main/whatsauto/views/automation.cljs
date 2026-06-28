@@ -1,9 +1,8 @@
 (ns whatsauto.views.automation
-  "Automation view — scheduler, rules engine, workflows."
-  (:require
-   [re-frame.core :as rf]
-   [whatsauto.interop.shadcn :as ui]
-   [whatsauto.interop.icons :as ic]))
+  "Automation view — scheduler, rules, workflows."
+  (:require [re-frame.core :as rf]
+            [whatsauto.interop.shadcn :as ui]
+            [whatsauto.interop.icons :as ic]))
 
 (defn- status-badge [status]
   (case status
@@ -58,7 +57,7 @@
              [:span.text-sm.font-medium (:name rule)]
              (if (:isEnabled rule)
                [ui/badge {:variant "outline" :class "text-green-500"} "Active"]
-               [ui/badge {:variant "outline"} "Disabled"])]])])]]))
+               [ui/badge {:variant "outline"} "Disabled"])]])])]]]))
 
 (defn panel []
   (let [active-tab @(rf/subscribe [:automation/tab])]
