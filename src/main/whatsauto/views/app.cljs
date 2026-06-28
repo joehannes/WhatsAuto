@@ -9,7 +9,7 @@
    [whatsauto.views.ai :as ai]
    [whatsauto.views.contacts :as contacts]
    [whatsauto.views.settings :as settings]
-   [whatsauto.views.qr-login :as qr-login]
+   [whatsauto.views.qrlogin :as qr-login]
    [whatsauto.views.automation :as automation]
    [whatsauto.views.translation :as translation]
    [whatsauto.views.voice :as voice]
@@ -58,6 +58,6 @@
           [:span err]
           [:button.hover:opacity-75
            {:on-click #(rf/dispatch [:app/set-error nil])}
-           "D"])
+           "D"]])
        [:div.flex.flex-1.overflow-hidden
         [active-view @active-view-sub @wa-status-sub]]]]]))

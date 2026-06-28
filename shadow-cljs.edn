@@ -24,6 +24,10 @@
    :output-dir "dist/js"
    :asset-path "/js"
 
+   :js-options
+   {:resolve {"WhatsAutoShadcn" {:target :global
+                                   :global "WhatsAutoShadcn"}}}
+
    :modules
    {:main {:init-fn whatsauto.core/init}}
 

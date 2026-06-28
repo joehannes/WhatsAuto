@@ -6,6 +6,8 @@ target/
 dist/js/
 dist/css/*.css
 dist/index.html
+src/main/gen/
+dist/js/shadcn-ui.js
 !.gitkeep
 .DS_Store
 *.log

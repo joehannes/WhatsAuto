@@ -82,7 +82,7 @@
      (for [i (range 3)]
        ^{:key i}
        [:span.size-1.rounded-full.bg-muted-foreground.animate-bounce
-        {:style {:animation-delay (str (* i 0.15) "s")}}])]])
+        {:style {:animation-delay (str (* i 0.15) "s")}}])]]])
 
 ;; ============================================================
 ;; AI chat compose
@@ -96,9 +96,7 @@
      (when-not provider
        [:p.text-xs.text-destructive.mb-2 "Configure an AI provider in the settings panel →"])
      [:div.flex.items-end.gap-2
-      [:textarea.flex-1.bg-input.rounded-xl.px-3.py-2.text-sm
-       .text-foreground.placeholder-muted-foreground
-       .border.border-border.outline-none.resize-none.max-h-32.min-h-9
+      [:textarea.flex-1.bg-input.rounded-xl.px-3.py-2.text-sm.text-foreground.placeholder-muted-foreground.border.border-border.outline-none.resize-none.max-h-32.min-h-9
        {:class       "focus:border-ring focus:ring-1 focus:ring-ring/50"
         :placeholder "Ask the AI anything..."
         :value       @!text
@@ -225,80 +223,24 @@
 
      [ui/scroll-area {:class "flex-1"}
       [:div.p-4.flex.flex-col.gap-3
-
-       ;; Provider list
        (if (empty? providers)
          [:div.text-center.py-8.text-muted-foreground
           [ic/icon-ai {:size 32 :class "mx-auto mb-2 opacity-30"}]
           [:p.text-sm "No providers configured"]
           [:p.text-xs.mt-1 "Click + to add your first AI provider"]]
-
          (for [p providers]
            ^{:key (:id p)}
            [provider-card p]))
-
-       ;; Add provider form
        (when @!show-add
          [:div.mt-2.p-4.rounded-xl.border.border-border.bg-card.flex.flex-col.gap-3
           [:h4.font-medium.text-sm "Add Provider"]
-
-          [:div
-           [:label.text-xs.text-muted-foreground.mb-1.block "Provider type"]
-           [ui/select
-            {:value     (:kind @!new-provider)
-             :on-value-change #(swap! !new-provider assoc :kind %)}
-            [ui/select-trigger {:class "w-full"}
-             [ui/select-value {:placeholder "Select provider"}]]
-            [ui/select-content
-             (for [[kind {:keys [label]}] provider-info]
-               ^{:key kind}
-               [ui/select-item {:value kind} label])]]]
-
-          [:div
-           [:label.text-xs.text-muted-foreground.mb-1.block "Name"]
-           [:input.w-full.bg-input.rounded-lg.px-3.py-1.5.text-sm.border.border-border.outline-none
-            {:class       "focus:border-ring"
-             :placeholder "My Qwen Provider"
-             :value       (:name @!new-provider)
-             :on-change   #(swap! !new-provider assoc :name (-> % .-target .-value))}]]
-
-          [:div
-           [:label.text-xs.text-muted-foreground.mb-1.block "Model"]
-           [:input.w-full.bg-input.rounded-lg.px-3.py-1.5.text-sm.border.border-border.outline-none
-            {:class       "focus:border-ring"
-             :placeholder "qwen-plus"
-             :value       (:model @!new-provider)
-             :on-change   #(swap! !new-provider assoc :model (-> % .-target .-value))}]]
-
-          [:div
-           [:label.text-xs.text-muted-foreground.mb-1.block "API Key"]
-           [:input.w-full.bg-input.rounded-lg.px-3.py-1.5.text-sm.border.border-border.outline-none
-            {:class       "focus:border-ring"
-             :type        "password"
-             :placeholder "sk-..."
-             :value       (:api-key @!new-provider)
-             :on-change   #(swap! !new-provider assoc :api-key (-> % .-target .-value))}]]
-
           [ui/button
            {:class    "w-full"
             :on-click (fn []
                         (rf/dispatch [:ai/save-provider @!new-provider])
                         (reset! !new-provider {:kind "qwen" :name "" :model "" :api-key ""})
                         (reset! !show-add false))}
-           "Save Provider"]])
-
-       ;; Instructions when no provider active
-       (when (empty? providers)
-         [:div.mt-4.p-3.rounded-lg.bg-muted.text-xs.text-muted-foreground
-          [:p.font-medium.mb-1 "Supported providers:"]
-          [:ul.list-disc.list-inside.space-y-0.5
-           [:li "Qwen (Alibaba Cloud) — Recommended"]
-           [:li "OpenAI GPT-4o"]
-           [:li "Anthropic Claude"]
-           [:li "Google Gemini"]
-           [:li "DeepSeek"]
-           [:li "Ollama / LM Studio (local)"]]])]]])
-     )))
+           "Save Provider"]])]]]))
 
 ;; ============================================================
 ;; AI view panel

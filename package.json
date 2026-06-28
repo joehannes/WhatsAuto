@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "description": "WhatsAuto ClojureScript frontend build tools",
   "scripts": {
-    "cljs:watch": "npx shadow-cljs watch app",
-    "cljs:release": "npx shadow-cljs release app",
+    "shadcn:bundle": "node scripts/bundle-shadcn.js",
+    "cljs:watch": "npm run shadcn:bundle && npx shadow-cljs watch app",
+    "cljs:release": "npm run shadcn:bundle && npx shadow-cljs release app",
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build",
     "build": "npm run cljs:release && tauri build",
@@ -32,6 +33,7 @@
     "shadow-cljs": "2.28.9",
     "@tailwindcss/vite": "^4.2.1",
     "@tauri-apps/cli": "^2",
+    "esbuild": "^0.28.1",
     "typescript": "~5.9.3"
   }
 }

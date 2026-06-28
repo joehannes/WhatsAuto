@@ -11,28 +11,23 @@
    Children are passed through as-is."
   (:require
    [reagent.core :as r]
-   ["@/components/ui/button" :refer [Button]]
-   ["@/components/ui/card" :refer [Card CardHeader CardTitle CardDescription CardContent CardFooter]]
-   ["@/components/ui/badge" :refer [Badge]]
-   ["@/components/ui/avatar" :refer [Avatar AvatarImage AvatarFallback]]
-   ["@/components/ui/input" :refer [Input]]
-   ["@/components/ui/textarea" :refer [Textarea]]
-   ["@/components/ui/separator" :refer [Separator]]
-   ["@/components/ui/scroll-area" :refer [ScrollArea]]
-   ["@/components/ui/tooltip" :refer [Tooltip TooltipTrigger TooltipContent TooltipProvider]]
-   ["@/components/ui/dialog" :refer [Dialog DialogContent DialogHeader DialogTitle DialogDescription DialogFooter]]
-   ["@/components/ui/dropdown-menu" :refer [DropdownMenu DropdownMenuTrigger DropdownMenuContent DropdownMenuItem DropdownMenuSeparator]]
-   ["@/components/ui/select" :refer [Select SelectTrigger SelectValue SelectContent SelectItem]]
-   ["@/components/ui/switch" :refer [Switch]]
-   ["@/components/ui/tabs" :refer [Tabs TabsList TabsTrigger TabsContent]]
-   ["@/components/ui/skeleton" :refer [Skeleton]]
-   ["@/components/ui/spinner" :refer [Spinner]]
-   ["@/components/ui/sidebar" :refer [SidebarProvider Sidebar SidebarContent SidebarHeader
-                                       SidebarFooter SidebarMenu SidebarMenuItem
-                                       SidebarMenuButton SidebarGroupLabel SidebarGroup
-                                       SidebarGroupContent SidebarTrigger SidebarInset
-                                       SidebarMenuBadge SidebarSeparator]]
-   ["sonner" :refer [Toaster toast]]))
+   ["WhatsAutoShadcn" :refer
+    [Button
+     Card CardHeader CardTitle CardDescription CardContent CardFooter
+     Badge
+     Avatar AvatarImage AvatarFallback
+     Input Textarea Separator ScrollArea
+     Tooltip TooltipTrigger TooltipContent TooltipProvider
+     Dialog DialogContent DialogHeader DialogTitle DialogDescription DialogFooter
+     DropdownMenu DropdownMenuTrigger DropdownMenuContent DropdownMenuItem DropdownMenuSeparator
+     Select SelectTrigger SelectValue SelectContent SelectItem
+     Switch
+     Tabs TabsList TabsTrigger TabsContent
+     Skeleton Spinner
+     SidebarProvider Sidebar SidebarContent SidebarHeader SidebarFooter
+     SidebarMenu SidebarMenuItem SidebarMenuButton SidebarGroup SidebarGroupLabel
+     SidebarGroupContent SidebarTrigger SidebarInset SidebarMenuBadge SidebarSeparator
+     Toaster toast]]))
 
 ;; ============================================================
 ;; Component adapter helpers

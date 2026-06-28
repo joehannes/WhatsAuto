@@ -13,7 +13,7 @@
    {:id :automation :label "Automation"  :icon ic/icon-automation}
    {:id :translation :label "Translation" :icon ic/icon-translation}
    {:id :voice    :label "Voice"         :icon ic/icon-voice}
-   {:id :lead-discovery :label "Leads"     :icon ic/icon-map-pin}
+   {:id :lead-discovery :label "Leads"     :icon ic/icon-campaigns}
    {:separator true}
    {:id :plugins    :label "Plugins"     :icon ic/icon-plugins}
    {:id :logs       :label "Logs"        :icon ic/icon-logs}
@@ -62,7 +62,7 @@
        :class     (when active? "text-primary font-medium")}
       [icon {:size 18}]
       [:span label]
-      (when (= id :chats) [unread-badge])]]]))
+      (when (= id :chats) [unread-badge])]]))
 
 (defn nav-sidebar []
   [ui/sidebar

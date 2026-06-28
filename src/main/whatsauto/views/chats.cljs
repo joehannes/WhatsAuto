@@ -54,8 +54,7 @@
           (or (:body lastMessage) (get-in lastMessage [:body]) "")])
 
        (when (pos? unreadCount)
-         [:span.inline-flex.items-center.justify-center.size-5.rounded-full
-          .text-xs.font-medium.shrink-0
+         [:span.inline-flex.items-center.justify-center.size-5.rounded-full.text-xs.font-medium.shrink-0
           {:class "bg-primary text-primary-foreground"}
           (if (> unreadCount 99) "99+" unreadCount)])]]]))
 
@@ -82,9 +81,7 @@
       [:div.relative
        [:div.absolute.inset-y-0.left-2.5.flex.items-center.pointer-events-none
         [ic/icon-search {:size 14 :class "text-muted-foreground"}]]
-       [:input.w-full.bg-input.rounded-lg.pl-8.pr-3.py-1.5
-        .text-sm.text-foreground.placeholder-muted-foreground
-        .border.border-border.outline-none
+       [:input.w-full.bg-input.rounded-lg.pl-8.pr-3.py-1.5.text-sm.text-foreground.placeholder-muted-foreground.border.border-border.outline-none
         {:class       "focus:border-ring focus:ring-1 focus:ring-ring/50"
          :placeholder "Search chats..."
          :value       query
@@ -167,9 +164,7 @@
 
       ;; Textarea (auto-grows)
       [:div.flex-1
-       [:textarea.w-full.bg-input.rounded-xl.px-3.py-2.text-sm
-        .text-foreground.placeholder-muted-foreground
-        .border.border-border.outline-none.resize-none.max-h-32.min-h-9
+       [:textarea.w-full.bg-input.rounded-xl.px-3.py-2.text-sm.text-foreground.placeholder-muted-foreground.border.border-border.outline-none.resize-none.max-h-32.min-h-9
         {:class       "focus:border-ring focus:ring-1 focus:ring-ring/50"
          :placeholder "Type a message..."
          :value       text

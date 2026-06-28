@@ -12,8 +12,7 @@
          clojure.string/upper-case)))
 
 (defn- contact-item [{:keys [id jid name phone_number businessName tags]}]
-  [:div.flex.items-center.gap-3.px-4.py-3.rounded-lg
-   .hover:bg-accent.cursor-pointer.transition-colors
+  [:div.flex.items-center.gap-3.px-4.py-3.rounded-lg.hover:bg-accent.cursor-pointer.transition-colors
 
    [ui/avatar
     [ui/avatar-fallback {:class "bg-primary/20 text-primary"}
@@ -51,8 +50,7 @@
      [:div.relative.mb-4
       [:div.absolute.inset-y-0.left-3.flex.items-center.pointer-events-none
        [ic/icon-search {:size 14 :class "text-muted-foreground"}]]
-      [:input.w-full.bg-input.rounded-xl.pl-9.pr-4.py-2.text-sm
-       .border.border-border.outline-none.text-foreground
+      [:input.w-full.bg-input.rounded-xl.pl-9.pr-4.py-2.text-sm.border.border-border.outline-none.text-foreground
        {:class       "focus:border-ring"
         :placeholder "Search contacts..."
         :value       query

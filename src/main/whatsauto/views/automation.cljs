@@ -25,7 +25,7 @@
      [ui/scroll-area {:class "flex-1"}
       (if (empty? tasks)
         [:div.flex.flex-col.items-center.justify-center.py-12.text-muted-foreground
-         [ic/icon-zap {:size 32 :class "mb-2 opacity-30"}]
+         [ic/icon-automation {:size 32 :class "mb-2 opacity-30"}]
          [:p.text-sm "No scheduled tasks"]]
         [:div.flex.flex-col.gap-2
          (for [task tasks]
@@ -38,26 +38,13 @@
 (defn- rules-panel []
   (let [rules @(rf/subscribe [:rules/list])]
     [:div.flex.flex-col.h-full
-     [:div.flex.items-center.justify-between.mb-4
-      [:div
-       [:h3.font-semibold "Business Rules"]
-       [:p.text-xs.text-muted-foreground (str (count rules) " rules")]]
-      [ui/button {:size "sm"}
-       [ic/icon-plus {:size 14}] "New Rule"]]
+     [:h3.font-semibold.mb-4 "Business Rules"]
      [ui/scroll-area {:class "flex-1"}
-      (if (empty? rules)
-        [:div.flex.flex-col.items-center.justify-center.py-12.text-muted-foreground
-         [ic/icon-git-branch {:size 32 :class "mb-2 opacity-30"}]
-         [:p.text-sm "No rules configured"]]
-        [:div.flex.flex-col.gap-2
-         (for [rule rules]
-           ^{:key (:id rule)}
-           [:div.p-3.rounded-lg.border.border-border.bg-card
-            [:div.flex.items-center.justify-between
-             [:span.text-sm.font-medium (:name rule)]
-             (if (:isEnabled rule)
-               [ui/badge {:variant "outline" :class "text-green-500"} "Active"]
-               [ui/badge {:variant "outline"} "Disabled"])]])])]]]))
+      [:div.flex.flex-col.gap-2
+       (for [rule rules]
+         ^{:key (:id rule)}
+         [:div.p-3.rounded-lg.border.border-border.bg-card
+          [:span.text-sm.font-medium (:name rule)]])]]]))
 
 (defn panel []
   (let [active-tab @(rf/subscribe [:automation/tab])]

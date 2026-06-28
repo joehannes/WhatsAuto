@@ -85,15 +85,13 @@
        [ui/card-content {:class "space-y-4"}
         [:div
          [:label.text-sm.font-medium.block.mb-1.5 "Business name"]
-         [:input.w-full.bg-input.rounded-lg.px-3.py-2.text-sm
-          .border.border-border.outline-none
+         [:input.w-full.bg-input.rounded-lg.px-3.py-2.text-sm.border.border-border.outline-none
           {:class     "focus:border-ring"
            :value     (or (:business_name @!draft) "")
            :on-change #(swap! !draft assoc :business_name (-> % .-target .-value))}]]
         [:div
          [:label.text-sm.font-medium.block.mb-1.5 "Business phone"]
-         [:input.w-full.bg-input.rounded-lg.px-3.py-2.text-sm
-          .border.border-border.outline-none
+         [:input.w-full.bg-input.rounded-lg.px-3.py-2.text-sm.border.border-border.outline-none
           {:class     "focus:border-ring"
            :value     (or (:business_phone @!draft) "")
            :on-change #(swap! !draft assoc :business_phone (-> % .-target .-value))}]]]]

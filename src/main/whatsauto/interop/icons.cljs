@@ -11,7 +11,7 @@
      Archive Star Check CheckCheck X Plus Trash2 Edit
      Wifi WifiOff QrCode Moon Sun Monitor RefreshCw
      Loader2 AlertCircle Info Bell BellOff
-     LogOut User Tag Hash Filter]])))
+     LogOut User Tag Hash Filter]]))
 
 (defn- icon [component]
   (r/adapt-react-class component))
@@ -73,3 +73,10 @@
 (def icon-sliders        (icon SlidersHorizontal))
 (def icon-chevron-left   (icon ChevronLeft))
 (def icon-chevron-right  (icon ChevronRight))
+
+;; Aliases used by Phase 2 views
+(def icon-zap            icon-automation)
+(def icon-globe          icon-translation)
+(def icon-mic            icon-voice)
+(def icon-puzzle         icon-plugins)
+(def icon-map-pin        icon-campaigns)

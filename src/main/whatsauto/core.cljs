@@ -4,8 +4,10 @@
   (:require
    [reagent.dom :as rdom]
    [re-frame.core :as rf]
+   [whatsauto.effects]
    [whatsauto.events]
    [whatsauto.subs]
+   [whatsauto.tauri :as tauri]
    [whatsauto.views.app :as app]))
 
 (defn mount-app []
@@ -18,4 +20,6 @@
 
 (defn init []
   (rf/dispatch-sync [:app/init])
+  (tauri/listen-all)
+  (rf/dispatch [:app/ready])
   (mount-app))
