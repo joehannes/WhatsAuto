@@ -1,39 +1,13 @@
-# Rust
-target/
-
-# Node
-node_modules/
-*.log
-
-# ClojureScript
-.shadow-cljs/
-out/
-.cpcache/
-
-# Tauri
-src-tauri/target/
-
-# Env
 .env
 .env.local
-.env.*.local
-
-# OS
+node_modules/
+target/
+.shadow-cljs/
+dist/js/
+dist/css/*.css
+dist/index.html
+!.gitkeep
 .DS_Store
-Thumbs.db
-
-# Build artifacts
-dist/
-build/
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Test coverage
-coverage/
-
-# Tauri generated
-src-tauri/gen/
+*.log
+.cpcache/
+.wa-session/
