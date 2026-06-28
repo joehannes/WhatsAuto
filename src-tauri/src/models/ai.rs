@@ -1,11 +1,8 @@
-//! AI provider and interaction types.
-
+use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 
-/// Supported AI providers.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, sqlx::Type)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
-#[sqlx(type_name = "TEXT", rename_all = "snake_case")]
 pub enum AiProviderKind {
     Qwen,
     OpenAi,
@@ -19,7 +16,6 @@ pub enum AiProviderKind {
 }
 
 impl AiProviderKind {
-    /// Returns the default base URL for this provider.
     pub fn default_base_url(&self) -> &str {
         match self {
             Self::Qwen => "https://dashscope.aliyuncs.com/compatible-mode/v1",
@@ -35,7 +31,6 @@ impl AiProviderKind {
     }
 }
 
-/// Configuration for an AI provider instance.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AiProvider {
     pub id: String,
@@ -43,18 +38,21 @@ pub struct AiProvider {
     pub name: String,
     pub base_url: String,
     pub model: String,
-    /// API key stored via OS keychain; not serialised in transit
     #[serde(skip_serializing)]
     pub api_key_ref: Option<String>,
     pub is_default: bool,
     pub enabled: bool,
     pub system_prompt: Option<String>,
-    /// Max tokens per response
     pub max_tokens: Option<i32>,
     pub temperature: Option<f32>,
+    pub top_p: Option<f32>,
+    pub streaming_enabled: bool,
+    pub request_timeout: Option<i32>,
+    pub retry_count: Option<i32>,
+    pub created_at: DateTime<Utc>,
+    pub updated_at: DateTime<Utc>,
 }
 
-/// A single turn in an AI conversation.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AiMessage {
     pub role: AiRole,
@@ -67,24 +65,45 @@ pub enum AiRole {
     System,
     User,
     Assistant,
+    Tool,
 }
 
-/// Response from the AI service.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AiResponse {
     pub content: String,
     pub provider_id: String,
     pub model: String,
     pub tokens_used: Option<i32>,
+    pub tokens_input: Option<i32>,
+    pub tokens_output: Option<i32>,
+    pub finish_reason: Option<String>,
+    pub response_time_ms: Option<i64>,
 }
 
-/// A reusable prompt template.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromptTemplate {
     pub id: String,
     pub name: String,
     pub description: Option<String>,
+    pub category: String,
+    pub tags: Vec<String>,
     pub template: String,
     pub variables: Vec<String>,
     pub provider_id: Option<String>,
+    pub is_builtin: bool,
+    pub created_at: DateTime<Utc>,
+    pub updated_at: DateTime<Utc>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ConversationMemory {
+    pub id: String,
+    pub chat_id: String,
+    pub summary: Option<String>,
+    pub facts: Vec<String>,
+    pub user_preferences: Vec<String>,
+    pub business_context: Option<String>,
+    pub ai_notes: Vec<String>,
+    pub memory_depth: i32,
+    pub last_updated: DateTime<Utc>,
 }
